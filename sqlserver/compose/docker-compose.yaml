@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  db:
+    build: ../docker
+    ports:
+      - 1433:1433
+    volumes:
+      - sqlvolume:/var/opt/mssql
+    environment:
+      - MSSQL_SA_PASSWORD=${DATABASE_PASSWORD}
+
+volumes:
+  sqlvolume:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/sqlserver
+      o: bind
+
+     
